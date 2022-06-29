@@ -8,6 +8,9 @@ import { ConfigModule } from '@nestjs/config';
 import ormConfig from './config/orm.config';
 import ormConfigProd from './config/orm.config.prod';
 import { SchoolModule } from './school/school.module';
+import { SongsController } from './songs/songs.controller';
+import { SongsModule } from './songs/songs.module';
+import { UsersModule } from './users/users.module';
 
 // Modules are boxes with specific tools. They divide app in several pieces.
 
@@ -32,6 +35,8 @@ import { SchoolModule } from './school/school.module';
     }),
     EventsModule,
     SchoolModule,
+    SongsModule,
+    UsersModule,
   ],
   controllers: [AppController],
   providers: [

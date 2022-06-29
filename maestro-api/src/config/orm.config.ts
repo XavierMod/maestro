@@ -4,6 +4,8 @@ import { Attendee } from 'src/events/attendee.entity';
 import { Event } from 'src/events/event.entity';
 import { Subject } from 'src/school/subject.entity';
 import { Teacher } from 'src/school/teacher.entity';
+import { Song } from 'src/songs/song.entity';
+import { User } from 'src/users/user.entity';
 
 export default registerAs(
   'orm.config',
@@ -15,7 +17,7 @@ export default registerAs(
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
     // Contains all entities from the project
-    entities: [Event, Attendee, Subject, Teacher],
+    entities: [Event, Attendee, Subject, Teacher, Song, User],
     // Synchronize automatically updates the DB schema when changing entities.
     // ! Should not be true in prod
     synchronize: true,
