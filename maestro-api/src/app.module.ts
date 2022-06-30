@@ -11,6 +11,7 @@ import { SchoolModule } from './school/school.module';
 import { SongsController } from './songs/songs.controller';
 import { SongsModule } from './songs/songs.module';
 import { UsersModule } from './users/users.module';
+import { AuthModule } from './auth/auth.module';
 
 // Modules are boxes with specific tools. They divide app in several pieces.
 
@@ -37,6 +38,7 @@ import { UsersModule } from './users/users.module';
     SchoolModule,
     SongsModule,
     UsersModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [
