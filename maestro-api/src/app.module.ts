@@ -1,17 +1,13 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Event } from './events/event.entity';
 import { EventsModule } from './events/events.module';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { ConfigModule } from '@nestjs/config';
 import ormConfig from './config/orm.config';
 import ormConfigProd from './config/orm.config.prod';
-import { SchoolModule } from './school/school.module';
-import { SongsController } from './songs/songs.controller';
 import { SongsModule } from './songs/songs.module';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
+import { TracksModule } from './tracks/tracks.module';
 
 // Modules are boxes with specific tools. They divide app in several pieces.
 
@@ -35,18 +31,10 @@ import { AuthModule } from './auth/auth.module';
         process.env.NODE_ENV !== 'production' ? ormConfig : ormConfigProd,
     }),
     EventsModule,
-    SchoolModule,
     SongsModule,
     UsersModule,
     AuthModule,
-  ],
-  controllers: [AppController],
-  providers: [
-    AppService,
-    {
-      provide: 'APP_NAME',
-      useValue: 'Nest Events Backend',
-    },
+    TracksModule,
   ],
 })
 export class AppModule {}
