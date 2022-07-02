@@ -20,14 +20,16 @@ export class LocalStrategy extends PassportStrategy(Strategy) {
   public async validate(username: string, password: string): Promise<any> {
     const user = await this.userRepository.findOne({where: {username}});
 
+    console.log('getting');
+
     if (!user) {
-        this.logger.debug(`User ${username} not founf!`);
-        throw new UnauthorizedException();
+        this.logger.debug(`User ${username} not found!`);
+        throw new UnauthorizedException([`User ${username} not found!`]);
     }
 
     if (!await bcrypt.compare(password, user.password)) {
         this.logger.debug(`Invalid credentials for user ${username}`);
-        throw new UnauthorizedException();
+        throw new UnauthorizedException([`Invalid credentials for user ${username}`]);
     }
 
     return user;

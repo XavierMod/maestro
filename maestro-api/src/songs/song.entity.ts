@@ -1,3 +1,4 @@
+import { Like } from 'src/likes/like.entity';
 import { User } from 'src/users/user.entity';
 import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
@@ -19,4 +20,9 @@ export class Song {
     nullable: false,
   })
   creator: User;
+  
+  @OneToMany(() => Like, (likes) => likes.song, {
+    eager: false
+  })
+  likes: Like[];
 }

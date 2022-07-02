@@ -1,9 +1,10 @@
-import { Injectable } from "@nestjs/common";
+import { Body, Injectable, UploadedFiles } from "@nestjs/common";
 import { User } from "src/users/user.entity";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 import { Track } from "./track.entity";
 import { CreateTrackDto } from "./input/create-track.dto";
+import { CurrentUser } from "src/auth/current-user.decorator";
 
 @Injectable()
 export class TracksService {
@@ -12,9 +13,14 @@ export class TracksService {
     private readonly tracksRepository: Repository<Track>
   ) {}
 
-  public async createTrack(input: CreateTrackDto, user: User): Promise<Track> {
+  public async createTrack(
+    input: CreateTrackDto,
+    user: User,
+    @UploadedFiles() files: Array<Express.Multer.File>
+  ): Promise<Track> {
     return await this.tracksRepository.save({
       ...input,
+      uploadId: files[0].filename,
       creator: user,
     });
   }

@@ -1,7 +1,8 @@
 import { IsEmail } from "class-validator";
+import { Like } from "src/likes/like.entity";
 import { Song } from "src/songs/song.entity";
 import { Track } from "src/tracks/track.entity";
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, JoinTable, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity("user")
 export class User {
@@ -37,4 +38,7 @@ export class User {
     cascade: true,
   })
   tracks: Track[];
+
+  @OneToMany(() => Like, (like) => like.user)
+  likes: Like[];
 }

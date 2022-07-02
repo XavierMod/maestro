@@ -4,6 +4,7 @@ import {
   Controller,
   Get,
   Logger,
+  Patch,
   Post,
   UseGuards,
 } from "@nestjs/common";
@@ -13,6 +14,7 @@ import { CurrentUser } from "src/auth/current-user.decorator";
 import { User } from "src/users/user.entity";
 import { Repository } from "typeorm";
 import { CreateSongDto } from "./input/create-song.dto";
+import { LikeSongDto } from "./input/like-song.dto";
 import { Song } from "./song.entity";
 import { SongsService } from "./songs.service";
 
@@ -48,5 +50,11 @@ export class SongsController {
       ]);
     }
     return await this.songsService.createSong(input, user);
+  }
+
+  @Patch("like")
+  @UseGuards(AuthGuardJwt)
+  async likeASong(@Body() input: LikeSongDto, @CurrentUser() user: User) {
+    return await this.songsService.likeASong(input, user);
   }
 }

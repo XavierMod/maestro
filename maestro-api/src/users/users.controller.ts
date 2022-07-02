@@ -49,8 +49,6 @@ export class UsersController {
     user.password = await this.authService.hashPassword(createUserDto.password);
     user.email = createUserDto.email;
 
-    console.log(user)
-
     return {
       ...(await this.repository.save(user)),
       token: this.authService.getTokenForUser(user),
