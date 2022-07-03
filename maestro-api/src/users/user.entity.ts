@@ -39,6 +39,6 @@ export class User {
   })
   tracks: Track[];
 
-  @OneToMany(() => Like, (like) => like.user)
+  @OneToMany(() => Like, (like) => like.user, {eager: true})
   likes: Like[];
 }

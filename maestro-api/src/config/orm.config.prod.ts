@@ -1,6 +1,5 @@
 import { registerAs } from '@nestjs/config';
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
-import { Event } from 'src/events/event.entity';
 
 export default registerAs(
   'orm.config',
@@ -12,7 +11,7 @@ export default registerAs(
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
     // Contains all entities from the project
-    entities: [Event],
+    entities: [],
     // Synchronize automatically updates the DB schema when changing entities.
     // ! Should not be true in prod
     synchronize: false,

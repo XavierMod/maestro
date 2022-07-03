@@ -36,4 +36,7 @@ export class Track {
   @Column()
   @Optional()
   uploadId: string;
+
+  @Column()
+  duration: number;
 }

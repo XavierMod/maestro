@@ -32,7 +32,7 @@ export class TrackRequest {
   @JoinColumn()
   track: Track;
 
-  @OneToOne(() => SongPart, { eager: true, cascade: true, onDelete: 'SET NULL' })
+  @OneToOne(() => SongPart, { eager: true, cascade: true, onDelete: "CASCADE" })
   @JoinColumn()
   songPart: SongPart;
 

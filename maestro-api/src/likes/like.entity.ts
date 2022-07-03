@@ -18,9 +18,17 @@ export class Like {
   @Column()
   date: Date;
   
-  @ManyToOne(() => Song, (song) => song.likes, {})
+  @ManyToOne(() => Song, (song) => song.likes)
+  @JoinColumn({name: "songId"})
   song: Song;
 
-  @ManyToOne(() => User, (user) => user.likes, { eager: true })
+  @Column()
+  songId: number;
+
+  @ManyToOne(() => User, (user) => user.likes)
+  @JoinColumn({ name: "userId" })
   user: User;
+
+  @Column()
+  userId: number;
 }
