@@ -36,7 +36,8 @@ export class Song {
   songParts: SongPart[];
 
   @OneToMany(() => TrackRequest, (req) => req.song, {
-    eager: true
+    eager: true,
+    cascade: true
   })
   trackRequests: TrackRequest[];
 }

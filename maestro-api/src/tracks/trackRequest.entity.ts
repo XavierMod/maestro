@@ -22,17 +22,17 @@ export class TrackRequest {
     // This entity won't be able to exist without an Event id
     nullable: false,
   })
-  @JoinColumn({name: 'songId'})
+  @JoinColumn({ name: "songId" })
   song: Song;
 
-  @Column({nullable: false})
+  @Column({ nullable: false })
   songId: number;
 
-  @OneToOne(() => Track, (track) => track.trackRequest, {eager: true})
+  @OneToOne(() => Track, (track) => track.trackRequest, { eager: true })
   @JoinColumn()
   track: Track;
 
-  @OneToOne(() => SongPart, {eager: true})
+  @OneToOne(() => SongPart, { eager: true, cascade: true, onDelete: 'SET NULL' })
   @JoinColumn()
   songPart: SongPart;
 
