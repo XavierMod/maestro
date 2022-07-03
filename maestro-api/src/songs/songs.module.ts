@@ -3,6 +3,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Like } from 'src/likes/like.entity';
 import { User } from 'src/users/user.entity';
 import { Song } from './song.entity';
+import { SongPart } from './songPart.entity';
 import { SongsController } from './songs.controller';
 import { SongsService } from './songs.service';
 
@@ -10,7 +11,7 @@ import { SongsService } from './songs.service';
   // Makes a repository for the Event entity
   // * Needs to be do it every time
   // The TypeOrmModule will only be available on the EventsController
-  imports: [TypeOrmModule.forFeature([Song, Like, User])],
+  imports: [TypeOrmModule.forFeature([Song, Like, User, SongPart])],
   controllers: [SongsController],
   providers: [SongsService],
 })

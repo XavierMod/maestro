@@ -4,11 +4,13 @@ import { User } from "src/users/user.entity";
 import {
   Column,
   Entity,
+  JoinColumn,
   JoinTable,
   ManyToOne,
   OneToOne,
   PrimaryGeneratedColumn,
 } from "typeorm";
+import { TrackRequest } from "./trackRequest.entity";
 
 @Entity("track")
 export class Track {
@@ -24,9 +26,12 @@ export class Track {
   })
   creator: User;
 
+  // * Next to do: link songs and tracks
+
   // @Optional()
-  // @OneToOne(() => Song, { eager: true })
-  // song: Song;
+  @OneToOne(() => TrackRequest)
+  @JoinColumn()
+  trackRequest: TrackRequest;
 
   @Column()
   @Optional()

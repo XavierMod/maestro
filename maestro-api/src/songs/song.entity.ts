@@ -1,6 +1,8 @@
 import { Like } from 'src/likes/like.entity';
+import { TrackRequest } from 'src/tracks/trackRequest.entity';
 import { User } from 'src/users/user.entity';
 import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { SongPart } from './songPart.entity';
 
 @Entity('song')
 export class Song {
@@ -18,6 +20,7 @@ export class Song {
   @ManyToOne(() => User, (user) => user.songs, {
     // This entity won't be able to exist without an Event id
     nullable: false,
+    eager: true
   })
   creator: User;
   
@@ -25,4 +28,15 @@ export class Song {
     eager: false
   })
   likes: Like[];
+
+  @OneToMany(() => SongPart, (part) => part.song, {
+    eager: true,
+    cascade: true
+  })
+  songParts: SongPart[];
+
+  @OneToMany(() => TrackRequest, (req) => req.song, {
+    eager: true
+  })
+  trackRequests: TrackRequest[];
 }

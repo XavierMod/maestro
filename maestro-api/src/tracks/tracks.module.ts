@@ -2,7 +2,9 @@ import { Module } from "@nestjs/common";
 import { MulterModule } from "@nestjs/platform-express";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { Song } from "src/songs/song.entity";
+import { SongPart } from "src/songs/songPart.entity";
 import { Track } from "./track.entity";
+import { TrackRequest } from "./trackRequest.entity";
 import { TracksController } from "./tracks.controller";
 import { TracksService } from "./tracks.service";
 
@@ -13,7 +15,7 @@ import { TracksService } from "./tracks.service";
         dest: "./uploads",
       }),
     }),
-    TypeOrmModule.forFeature([Track, Song]),
+    TypeOrmModule.forFeature([Track, Song, SongPart, TrackRequest]),
   ],
   controllers: [TracksController],
   providers: [TracksService],
