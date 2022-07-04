@@ -1,11 +1,11 @@
 import { registerAs } from '@nestjs/config';
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
+import { Like } from 'src/likes/like.entity';
 import { Song } from 'src/songs/song.entity';
 import { SongPart } from 'src/songs/songPart.entity';
 import { Track } from 'src/tracks/track.entity';
 import { TrackRequest } from 'src/tracks/trackRequest.entity';
 import { User } from 'src/users/user.entity';
-import { Like } from 'typeorm';
 
 export default registerAs(
   'orm.config',
