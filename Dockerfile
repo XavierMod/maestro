@@ -3,16 +3,18 @@ FROM node:16.8-alpine3.11 as development
 WORKDIR /usr/src/app/
 
 COPY maestro-api/package*.json ./
-# COPY maestro-api/tsconfig.build.json ./dist
-# COPY maestro-api/tsconfig.json ./
 
 RUN npm install --only=development
 
 COPY ./maestro-api .
-COPY ./maestro-fe/build ./maestro-api/dist
-
 
 RUN npm run build
+
+COPY ./maestro-fe ./client
+
+RUN cd ./client && npm ci && npm run build && cd ..
+
+COPY ./maestro-fe/build ./dist/build
 
 FROM node:16.8-alpine3.11 as production
 
