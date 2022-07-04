@@ -20,7 +20,7 @@ RUN cd ./client && npm install && npm run build
 
 WORKDIR /usr/src/app/
 
-COPY ./client/public ./dist/build
+COPY ./client/build ./dist/build
 
 FROM node:16.8-alpine3.11 as production
 
