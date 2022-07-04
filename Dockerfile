@@ -4,8 +4,8 @@ WORKDIR /usr/src/app/
 
 COPY maestro-api/package*.json ./
 
-RUN npm install --only=development
+RUN npm install
 
 COPY . .
 
-RUN npm run start:prod
+RUN npm run build
