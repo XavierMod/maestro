@@ -10,7 +10,9 @@ COPY ./maestro-api .
 
 RUN npm run build
 
-RUN mkdir -p ./client
+WORKDIR /usr/src/app/client
+
+WORKDIR /usr/src/app/
 
 COPY ./maestro-fe ./client
 
