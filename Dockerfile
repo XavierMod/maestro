@@ -18,6 +18,8 @@ COPY ./maestro-fe ./client
 
 RUN cd ./client && npm install && npm run build
 
+WORKDIR /usr/src/app/dist/build
+
 WORKDIR /usr/src/app/
 
 COPY ./client/build ./dist/build
