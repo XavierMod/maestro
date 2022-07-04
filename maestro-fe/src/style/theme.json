@@ -1,0 +1,31 @@
+{
+    "fonts": {
+        "primary": "Comfortaa",
+        "sizes": {
+            "h1": "30px",
+            "h3": "20px",
+            "p": "17px"
+        },
+        "lineHeight": "25px"
+    },
+    "colors": {
+        "primary": {
+            "regular": "#6da66a",
+            "regular_active": "#5c8a5a",
+            "darker": "#503D42",
+            "darker_active": "#33272a"
+        },
+        "text": {
+            "primary": "#503D42",
+            "secondary": "#F5F8FC"
+        },
+        "delete": "#cc391f",
+        "delete_active": "#a62f19",
+        "grey": "#C6C6C6",
+        "tag": "#EAECF2",
+        "background": {
+            "primary": "#F5F8FC",
+            "secondary": "#F8F9FC"
+        }
+    }
+}
