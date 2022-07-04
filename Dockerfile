@@ -10,6 +10,8 @@ COPY ./maestro-api .
 
 RUN npm run build
 
+RUN mkdir -p ./client
+
 COPY ./maestro-fe ./client
 
 RUN cd ./client && npm ci && npm run build && cd ..
