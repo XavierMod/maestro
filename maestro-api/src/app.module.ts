@@ -1,4 +1,5 @@
 import { Module } from '@nestjs/common';
+import { ServeStaticModule } from '@nestjs/serve-static';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
 import ormConfig from './config/orm.config';
@@ -7,11 +8,15 @@ import { SongsModule } from './songs/songs.module';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { TracksModule } from './tracks/tracks.module';
+import { join } from 'path';
 
 // Modules are boxes with specific tools. They divide app in several pieces.
 
 @Module({
   imports: [
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, './', 'build'),
+    }),
     // Allows using env variables
     ConfigModule.forRoot({
       // env vars can now be accessed anywhere

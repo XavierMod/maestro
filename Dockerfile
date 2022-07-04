@@ -9,6 +9,8 @@ COPY maestro-api/package*.json ./
 RUN npm install --only=development
 
 COPY ./maestro-api .
+COPY ./maestro-fe/build ./maestro-api/dist
+
 
 RUN npm run build
 
