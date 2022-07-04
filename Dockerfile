@@ -1,6 +1,6 @@
 FROM node:16.8-alpine3.11 As development
 
-WORKDIR /usr/src/app/maestro-api
+WORKDIR /usr/src/app/
 
 COPY package*.json ./
 
