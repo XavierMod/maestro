@@ -1,24 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import { useSelector } from "react-redux";
+import { Route, Routes } from "react-router-dom";
+import Error404 from "./views/Error404";
+import Home from "./views/Home";
+import Landing from "./views/Landing";
+import SignIn from "./views/SignIn";
+import SignUp from "./views/SignUp";
 
 function App() {
+  const isUserAuthenticated = useSelector(
+    (state) => state.auth.isUserAuthenticated
+  );
+
+  const renderAuthenticatedRoutes = () => {
+    return (
+      <Route path="/home" element={<Home />} />
+    )
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Routes>
+      {isUserAuthenticated ? renderAuthenticatedRoutes() : null}
+      <Route path="/" element={<Landing />} />
+      <Route path="/signup" element={<SignUp />} />
+      <Route path="/*" element={<SignIn />} />
+    </Routes>
   );
 }
 
