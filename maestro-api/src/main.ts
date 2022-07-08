@@ -12,6 +12,9 @@ async function bootstrap() {
   // Enables global pipe validation.
   app.useGlobalPipes(new ValidationPipe());
 
+  // Enables cors
+  app.enableCors();
+
   // Adding OpenAPI - Swagger
   const config = new DocumentBuilder()
     .setTitle('Events')

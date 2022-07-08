@@ -1,10 +1,15 @@
-import { Inject, Injectable, Logger, UnauthorizedException } from "@nestjs/common";
+import {
+  Inject,
+  Injectable,
+  Logger,
+  UnauthorizedException,
+} from "@nestjs/common";
 import { PassportStrategy } from "@nestjs/passport";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Strategy } from "passport-local";
 import { User } from "src/users/user.entity";
 import { Repository } from "typeorm";
-import * as bcrypt from 'bcrypt'
+import * as bcrypt from "bcrypt";
 
 @Injectable()
 export class LocalStrategy extends PassportStrategy(Strategy) {
@@ -14,22 +19,24 @@ export class LocalStrategy extends PassportStrategy(Strategy) {
     @InjectRepository(User)
     private readonly userRepository: Repository<User>
   ) {
-    super();
+    super({ usernameField: "email", passwordField: "password" });
   }
 
-  public async validate(username: string, password: string): Promise<any> {
-    const user = await this.userRepository.findOne({where: {username}});
+  public async validate(email: string, password: string): Promise<any> {
+    const user = await this.userRepository.findOne({ where: { email } });
 
-    console.log('getting');
+    console.log("getting");
 
     if (!user) {
-        this.logger.debug(`User ${username} not found!`);
-        throw new UnauthorizedException([`User ${username} not found!`]);
+      this.logger.debug(`User ${email} not found!`);
+      throw new UnauthorizedException([`User ${email} not found!`]);
     }
 
-    if (!await bcrypt.compare(password, user.password)) {
-        this.logger.debug(`Invalid credentials for user ${username}`);
-        throw new UnauthorizedException([`Invalid credentials for user ${username}`]);
+    if (!(await bcrypt.compare(password, user.password))) {
+      this.logger.debug(`Invalid credentials for user ${email}`);
+      throw new UnauthorizedException([
+        `Invalid credentials for user ${email}`,
+      ]);
     }
 
     return user;
