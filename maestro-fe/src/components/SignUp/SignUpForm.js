@@ -1,6 +1,7 @@
 import React from "react";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
+import TextField from "../library/TextField";
 
 const SignupSchema = Yup.object().shape({
   firstName: Yup.string()
@@ -31,16 +32,9 @@ const SignUpForm = () => (
     >
       {({ errors, touched }) => (
         <Form>
-          <Field name="firstName" />
-          {errors.firstName && touched.firstName ? (
-            <div>{errors.firstName}</div>
-          ) : null}
-          <Field name="lastName" />
-          {errors.lastName && touched.lastName ? (
-            <div>{errors.lastName}</div>
-          ) : null}
-          <Field name="email" type="email" />
-          {errors.email && touched.email ? <div>{errors.email}</div> : null}
+          <TextField name="firstName" maxLength={10} type="text" placeholder="First name" change={(el) => console.log(el)}/>
+          <TextField name="lastName" type="text" placeholder="Last name" change={(el) => console.log(el)}/>
+          <TextField name="email" type="email" placeholder="Email" change={(el) => console.log(el)}/>
           <button type="submit">Submit</button>
         </Form>
       )}

@@ -1,0 +1,23 @@
+@font-face {
+    font-family: BentonSansBold;
+    font-weight: bold;
+    src: url("../fonts/BentonSans/BentonSans-Bold.otf") format("opentype");
+}
+
+@font-face {
+    font-family: BentonSansBook;
+    font-weight: 500;
+    src: url("../fonts/BentonSans/BentonSans-Book.otf") format("opentype");
+}
+
+@font-face {
+    font-family: BentonSansMedium;
+    font-weight: 600;
+    src: url("../fonts/BentonSans/BentonSans-Medium.otf") format("opentype");
+}
+
+@font-face {
+    font-family: BentonSansRegular;
+    font-weight: 500;
+    src: url("../fonts/BentonSans/BentonSans-Regular.otf") format("opentype");
+}

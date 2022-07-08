@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
     * {
@@ -31,10 +31,15 @@ const GlobalStyle = createGlobalStyle`
     }
     body {
         line-height: 1;
-        background-color: ${(props) => props.theme.colors.background};
+        background-color:  ${(props) => props.theme.colors.backgrounds.dark};
+        color: ${(props) => props.theme.colors.text};
         font-family: ${(props) => props.theme.fonts.primary};
         -ms-overflow-style: none;  /* IE and Edge */
         scrollbar-width: none;  /* Firefox */
+    }
+
+    input {
+        color: ${(props) => props.theme.colors.utilities.text};
     }
     
     body::-webkit-scrollbar {
