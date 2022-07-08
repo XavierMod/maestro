@@ -36,11 +36,7 @@ const GlobalStyle = createGlobalStyle`
         -ms-overflow-style: none;  /* IE and Edge */
         scrollbar-width: none;  /* Firefox */
     }
-
-    a {
-        color: white;
-    }
-
+    
     body::-webkit-scrollbar {
         display: none;
     }
