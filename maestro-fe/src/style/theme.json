@@ -1,6 +1,8 @@
 {
   "fonts": {
     "primary": "BentonSansRegular",
+    "secondary": "GillandRegular",
+    "tertiary": "Gorod",
     "sizes": {
       "h1": "30px",
       "h3": "20px",
@@ -14,7 +16,8 @@
       "regular_active": "#5c8a5a",
       "darker": "#503D42",
       "darker_active": "#33272a",
-      "accent": "#3103EA"
+      "accent": "#3103EA",
+      "accent_2": "#23D384"
     },
     "utilities": {
         "text": "#ffffff",

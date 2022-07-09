@@ -8,6 +8,7 @@ import { SongsModule } from './songs/songs.module';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { TracksModule } from './tracks/tracks.module';
+import { AppStatusController } from './appStatus.controller';
 import { join } from 'path';
 
 // Modules are boxes with specific tools. They divide app in several pieces.
@@ -39,5 +40,6 @@ import { join } from 'path';
     AuthModule,
     TracksModule,
   ],
+  controllers: [AppStatusController]
 })
 export class AppModule {}

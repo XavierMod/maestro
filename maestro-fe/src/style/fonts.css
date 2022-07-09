@@ -21,3 +21,21 @@
     font-weight: 500;
     src: url("../fonts/BentonSans/BentonSans-Regular.otf") format("opentype");
 }
+
+@font-face {
+    font-family: GillandRegular;
+    font-weight: 500;
+    src: url("../fonts/Gilland/Gilland-Regular.otf") format("opentype");
+}
+
+@font-face {
+    font-family: GillandBold;
+    font-weight: bold;
+    src: url("../fonts/Gilland/Gilland-Bold.otf") format("opentype");
+}
+
+@font-face {
+    font-family: Gorod;
+    font-weight: bold;
+    src: url("../fonts/Gorod/Gorod.otf") format("opentype");
+}

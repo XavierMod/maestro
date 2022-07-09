@@ -2,6 +2,7 @@ import React from "react";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import TextField from "../library/TextField";
+import Button from "../library/Button";
 
 const SignupSchema = Yup.object().shape({
   firstName: Yup.string()
@@ -32,10 +33,27 @@ const SignUpForm = () => (
     >
       {({ errors, touched }) => (
         <Form>
-          <TextField name="firstName" maxLength={10} type="text" placeholder="First name" change={(el) => console.log(el)}/>
-          <TextField name="lastName" type="text" placeholder="Last name" change={(el) => console.log(el)}/>
-          <TextField name="email" type="email" placeholder="Email" change={(el) => console.log(el)}/>
-          <button type="submit">Submit</button>
+          <TextField
+            label="First name"
+            name="firstName"
+            maxLength={10}
+            type="text"
+            placeholder="First name"
+            change={(el) => console.log(el)}
+          />
+          <TextField
+            name="lastName"
+            type="text"
+            placeholder="Last name"
+            change={(el) => console.log(el)}
+          />
+          <TextField
+            name="email"
+            type="email"
+            placeholder="Email"
+            change={(el) => console.log(el)}
+          />
+          <Button type="submit" className="gorod accent_2">Click me</Button>
         </Form>
       )}
     </Formik>

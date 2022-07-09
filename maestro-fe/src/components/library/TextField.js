@@ -5,7 +5,7 @@ import { BiInfoCircle } from "react-icons/bi";
 
 const Wrapper = styled.div`
   position: relative;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
   width: 300px;
 
   input {
@@ -45,29 +45,50 @@ const CharacterCount = styled.div`
   right: 15px;
 `;
 
+const Label = styled.label`
+  font-family: ${(props) => props.theme.fonts.secondary};
+  color: ${(props) => props.theme.colors.utilities.text};
+  font-size: 20px;
+  margin-bottom: 10px;
+  display: inline-block;
+`;
+
+const InputWrapper = styled.div`
+  position: relative;
+`;
+
 const TextField = (props) => {
-  const { type, placeholder, name, disabled, change, maxLength, value } = props;
+  const { type, placeholder, name, disabled, change, maxLength, value, label, style } =
+    props;
   const [characterCount, setCharacterCount] = useState(0);
   return (
-    <Wrapper className={`Field TextField`}>
-      <Field
-        onKeyUp={(el) => {
-          if (change) {
-            setCharacterCount(el.target.value.length);
-            return change({
-              name,
-              value: el.target.value,
-            });
-          }
-          return null;
-        }}
-        placeholder={placeholder}
-        type={type}
-        maxLength={maxLength}
-        name={name}
-        value={value}
-        disabled={disabled}
-      />
+    <Wrapper style={style} className={`Field TextField`}>
+      {label ? <Label>{label}</Label> : null}
+      <InputWrapper>
+        <Field
+          onKeyUp={(el) => {
+            if (change) {
+              setCharacterCount(el.target.value.length);
+              return change({
+                name,
+                value: el.target.value,
+              });
+            }
+            return null;
+          }}
+          placeholder={placeholder}
+          type={type}
+          maxLength={maxLength}
+          name={name}
+          value={value}
+          disabled={disabled}
+        />
+        {maxLength ? (
+          <CharacterCount>
+            <span>{characterCount}</span>/<span>{maxLength}</span>
+          </CharacterCount>
+        ) : null}
+      </InputWrapper>
       <ErrorMessage
         className="ErrorMessage"
         render={(message) => {
@@ -81,11 +102,6 @@ const TextField = (props) => {
         name={name}
         component="div"
       />
-      {maxLength ? (
-        <CharacterCount>
-          <span>{characterCount}</span>/<span>{maxLength}</span>
-        </CharacterCount>
-      ) : null}
     </Wrapper>
   );
 };

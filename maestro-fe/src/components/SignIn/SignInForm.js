@@ -3,13 +3,17 @@ import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import { useDispatch } from "react-redux";
 import { signin } from "../../app/features/authenticationSlice";
+import TextField from "../library/TextField";
+import Button from "../library/Button";
+import Text from "../library/styles/Text";
+import { BiDownArrowAlt } from "react-icons/bi";
 
 const SignInSchema = Yup.object().shape({
   email: Yup.string().email("Invalid email").required("Required"),
   password: Yup.string()
-  .min(2, "Too Short!")
-  .max(50, "Too Long!")
-  .required("Required"),
+    .min(2, "Too Short!")
+    .max(50, "Too Long!")
+    .required("Required"),
 });
 
 const SignInForm = () => {
@@ -26,21 +30,38 @@ const SignInForm = () => {
         validationSchema={SignInSchema}
         onSubmit={(values) => {
           // same shape as initial values
-          dispatch(signin({
-            email: values.email,
-            password: values.password
-          }));
+          dispatch(
+            signin({
+              email: values.email,
+              password: values.password,
+            })
+          );
         }}
       >
         {({ errors, touched }) => (
-          <Form>
-            <Field name="email" type="email" />
-            {errors.email && touched.email ? <div>{errors.email}</div> : null}
-            <Field name="password" type="password" />
-            {errors.password && touched.password ? (
-              <div>{errors.password}</div>
-            ) : null}
-            <button type="submit">Submit</button>
+          <Form style={{position: 'relative'}}>
+            <TextField
+              label="Email"
+              name="email"
+              type="email"
+              placeholder="Email"
+              change={(el) => console.log(el)}
+            />
+            <TextField
+              style={{ marginBottom: "15px" }}
+              label="Password"
+              name="password"
+              type="password"
+              placeholder="First name"
+              change={(el) => console.log(el)}
+            />
+            <Text style={{ marginBottom: "40px" }}>
+              I've forgotten my password
+            </Text>
+
+            <Button style={{position: 'absolute', right: 0, bottom: 0}} type="submit" className="icon">
+              <BiDownArrowAlt style={{rotate: '-90deg'}} />
+            </Button>
           </Form>
         )}
       </Formik>
