@@ -38,7 +38,7 @@ const SignIn = () => {
           <Title className="large">Sign In to Maestro</Title>
           <Text style={{marginBottom: '20px'}}>
             Do you not have an account yet?{" "}
-            <Link to="signup" style={{ color: theme.colors.primary.accent_2 }}>
+            <Link to="/signup" style={{ color: theme.colors.primary.accent_2 }}>
               Sign Up
             </Link>
           </Text>

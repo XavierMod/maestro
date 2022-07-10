@@ -58,28 +58,40 @@ const InputWrapper = styled.div`
 `;
 
 const TextField = (props) => {
-  const { type, placeholder, name, disabled, change, maxLength, value, label, style } =
-    props;
+  const {
+    type,
+    placeholder,
+    name,
+    disabled,
+    change,
+    maxLength,
+    value,
+    label,
+    style,
+    min,
+    maxWidth,
+  } = props;
   const [characterCount, setCharacterCount] = useState(0);
   return (
-    <Wrapper style={style} className={`Field TextField`}>
+    <Wrapper style={{...style, width: maxWidth ? '100%' : '300px'}} className={`Field TextField`}>
       {label ? <Label>{label}</Label> : null}
       <InputWrapper>
         <Field
           onKeyUp={(el) => {
-            if (change) {
-              setCharacterCount(el.target.value.length);
-              return change({
-                name,
-                value: el.target.value,
-              });
-            }
-            return null;
+            setCharacterCount(el.target.value.length);
+            // console.log(el.target);
+
+            return change({
+              name,
+              value: el.target.value,
+            });
           }}
           placeholder={placeholder}
           type={type}
           maxLength={maxLength}
           name={name}
+          min={min}
+          max={maxLength}
           value={value}
           disabled={disabled}
         />

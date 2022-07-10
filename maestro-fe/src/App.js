@@ -50,6 +50,7 @@ function App() {
         {isUserAuthenticated ? renderAuthenticatedRoutes() : null}
         <Route index element={<Landing />} />
         <Route path="signup/*" element={<SignUp />} />
+        <Route path="signin" element={<SignIn />} />
         <Route path="*" element={<Error404 />} />
       </Routes>
     );

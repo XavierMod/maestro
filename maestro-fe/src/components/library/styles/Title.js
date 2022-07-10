@@ -15,7 +15,7 @@ const Wrapper = styled.h1`
 
   &.large {
     font-size: 60px;
-    line-height: 75px;
+    line-height: 60px;
   }
 `;
 
