@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Route, Routes } from "react-router-dom";
 import { getTokenFromStorage } from "./app/features/authenticationSlice";
+import Loading from "./components/library/Loading";
+import SignUpLanding from "./components/SignUp/SignUpLanding";
 import { status } from "./services/resources";
 import Error404 from "./views/Error404";
 import Home from "./views/Home";
@@ -11,7 +13,8 @@ import SignIn from "./views/SignIn";
 import SignUp from "./views/SignUp";
 
 function App() {
-  const [isServerUp, setServer] = useState(false);
+  const [isServerUp, setServer] = useState(null);
+
   const dispatch = useDispatch();
   const isUserAuthenticated = useSelector(
     (state) => state.auth.isUserAuthenticated
@@ -19,13 +22,17 @@ function App() {
 
   useEffect(() => {
     const checkServerStatus = async () => {
-      const getStatus = await (await status()).data;
-      console.log("getstatus", getStatus);
-      if (getStatus.status === "OK") {
-        setServer(true);
-        return true;
+      try {
+        const getStatus = await (await status()).data;
+        console.log("getstatus", getStatus);
+        if (getStatus.status === "OK") {
+          setServer(true);
+          return true;
+        }
+      } catch (err) {
+        setServer(false);
+        return false;
       }
-      return false;
     };
 
     checkServerStatus();
@@ -41,14 +48,18 @@ function App() {
     return (
       <Routes>
         {isUserAuthenticated ? renderAuthenticatedRoutes() : null}
-        <Route path="/" element={<Landing />} />
-        <Route path="/signup" element={<SignUp />} />
-        <Route path="/*" element={<SignIn />} />
+        <Route index element={<Landing />} />
+        <Route path="signup/*" element={<SignUp />} />
+        <Route path="*" element={<Error404 />} />
       </Routes>
     );
   }
 
-  return <ServerDown />;
+  if (isServerUp === false) {
+    return <ServerDown />;
+  }
+
+  return <Loading />;
 }
 
 export default App;

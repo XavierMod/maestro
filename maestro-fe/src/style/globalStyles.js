@@ -64,6 +64,9 @@ const GlobalStyle = createGlobalStyle`
     a {
         text-decoration: none;
     }
+    p {
+        color: white;
+    }
 `;
 
 export default GlobalStyle;

@@ -4,6 +4,8 @@ import Text from "../components/library/styles/Text";
 import Title from "../components/library/styles/Title";
 import SignInForm from "../components/SignIn/SignInForm";
 import SignInPattern from '../assets/svg/sign-in-pattern.svg';
+import LineWaves from '../assets/svg/line-waves.svg';
+import {Link} from 'react-router-dom';
 
 const Wrapper = styled.div`
   display: flex;
@@ -27,17 +29,18 @@ const SignIn = () => {
   return (
     <Wrapper>
       <ImageBackground>
-        <img style={{width: '100%'}} src={SignInPattern} />
+        <img alt="" style={{width: '100%'}} src={SignInPattern} />
       </ImageBackground>
       <FormWrapper style={{ flex: 5 }}>
+        <img alt="" style={{width: '100%', marginBottom: '40px'}} src={LineWaves} />
         <div style={{maxWidth: '500px'}}>
           <Text className="gorod">Welcome back</Text>
           <Title className="large">Sign In to Maestro</Title>
-          <Text>
+          <Text style={{marginBottom: '20px'}}>
             Do you not have an account yet?{" "}
-            <span style={{ color: theme.colors.primary.accent_2 }}>
+            <Link to="signup" style={{ color: theme.colors.primary.accent_2 }}>
               Sign Up
-            </span>
+            </Link>
           </Text>
           <SignInForm />
         </div>

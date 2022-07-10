@@ -21,7 +21,6 @@ const SignInForm = () => {
 
   return (
     <div>
-      <h1>SignIn</h1>
       <Formik
         initialValues={{
           email: "",

@@ -1,12 +1,14 @@
 import React from "react";
-import SignUpForm from "../components/SignUp/SignUpForm";
+import { Route, Routes } from "react-router-dom";
+import SignUpLanding from "../components/SignUp/SignUpLanding";
+import SignUpProfile from "../components/SignUp/SignUpProfile";
 
 const SignUp = () => {
   return (
-    <div>
-      SignUp
-      <SignUpForm />
-    </div>
+    <Routes>
+      <Route index element={<SignUpLanding />} />
+      <Route path="profile" element={<SignUpProfile />} />
+    </Routes>
   );
 };
 
