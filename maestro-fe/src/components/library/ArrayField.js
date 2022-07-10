@@ -6,28 +6,26 @@ const ArrayField = (props) => {
   const { items, itemKey } = props;
   return (
     <FieldArray
+      className="fieldArray"
       name={itemKey}
       render={(arrayHelpers) => (
-        <div>
+        <div className="fieldArray__items">
           {items.map((item, index) => (
-            <div key={index}>
+            <div className="fieldArray__items--item" key={index}>
               <Field
+                className="fieldArray__items--input"
                 style={{ color: "black" }}
                 value={item}
                 name={`${itemKey}.${index}`}
               />
-              <button
-                type="button"
-                onClick={() => arrayHelpers.remove(index)} // remove a friend from the list
-              >
-                -
-              </button>
+              <div onClick={() => arrayHelpers.remove(index)}>
+                {props.removeItemButton}
+              </div>
             </div>
           ))}
-          <button type="button" onClick={() => arrayHelpers.push("")}>
-            {/* show this when user has removed all friends from the list */}
-            Add a friend
-          </button>
+          <div onClick={() => arrayHelpers.push("")}>
+            {props.addItemButton}
+          </div>
         </div>
       )}
     />

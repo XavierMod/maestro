@@ -2,6 +2,7 @@ import { useFormikContext } from "formik";
 import React from "react";
 import styled from "styled-components";
 import ArrayField from "../library/ArrayField";
+import GenresInput from "../library/GenresInput";
 import Title from "../library/styles/Title";
 import TextField from "../library/TextField";
 
@@ -60,18 +61,7 @@ const SignUpProfile = () => {
           change={(el) => console.log(el)}
         />
         <p>{JSON.stringify(values.roles)}</p>
-        <ArrayField
-          maxWidth
-          style={{ margin: "75px 0" }}
-          label="What do you play?"
-          name="roles"
-          type="text"
-          items={values.roles}
-          itemKey="roles"
-          placeholder="e.g. Guitar, bass..."
-          maxLength={25}
-          change={(el) => console.log(el)}
-        />
+        <GenresInput values={values} />
         <TextField
           maxWidth
           style={{ margin: "75px 0" }}
