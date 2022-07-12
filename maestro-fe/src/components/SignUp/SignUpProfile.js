@@ -3,6 +3,8 @@ import React from "react";
 import styled from "styled-components";
 import ArrayField from "../library/ArrayField";
 import GenresInput from "../library/GenresInput";
+import RolesInput from "../library/RolesInput";
+import Text from "../library/styles/Text";
 import Title from "../library/styles/Title";
 import TextField from "../library/TextField";
 
@@ -60,24 +62,14 @@ const SignUpProfile = () => {
           max={150}
           change={(el) => console.log(el)}
         />
-        <p>{JSON.stringify(values.roles)}</p>
-        <GenresInput values={values} />
-        <TextField
-          maxWidth
-          style={{ margin: "75px 0" }}
-          label="What type of music do you make?"
-          name="genres"
-          type="text"
-          value={values.genres}
-          placeholder="e.g. Punk, Rock, etc."
-          maxLength={25}
-          change={(el) => console.log(el)}
-        />
+        <RolesInput roles={values.roles} />
+        <GenresInput genres={values.genres} />
         <TextField
           maxWidth
           style={{ margin: "75px 0" }}
           label="Tell us a bit about you"
           name="bio"
+          component="textarea"
           type="text"
           value={values.bio}
           placeholder="e.g. Punk, Rock, etc."
@@ -96,6 +88,11 @@ const SignUpProfile = () => {
           change={(el) => console.log(el)}
         />
       </InputsWrapper>
+      <ProfilePreview>
+        <Text>{values.email}</Text>
+
+        <Text className="gorod">#{values.username}, {values.age}</Text>
+      </ProfilePreview>
     </Wrapper>
   );
 };

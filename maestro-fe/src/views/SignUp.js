@@ -24,7 +24,7 @@ const SignUp = () => {
         username: "",
         age: "",
         roles: ["guitar", "bass", "trumpet"],
-        genres: "",
+        genres: ["punk rock", "rock", "jazz"],
         bio: "",
         links: "",
       }}

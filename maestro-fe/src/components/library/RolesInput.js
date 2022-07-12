@@ -10,31 +10,17 @@ const Wrapper = styled.div`
     margin-right: 10px;
     margin-bottom: 10px;
 
-    &.even {
-      background: ${(props) => props.theme.colors.primary.accent} !important;
-      transform: rotate(2deg);
-      .fieldArray__items--input {
-        color: ${(props) => props.theme.colors.primary.accent_2};
-      }
-    }
-
-    &.not-even {
-      background: ${(props) => props.theme.colors.primary.accent_2};
-      transform: rotate(-2deg);
-
-      .fieldArray__items--input {
-        color: ${(props) => props.theme.colors.primary.accent};
-      }
-    }
-
     .fieldArray__items--input {
       display: inline-flex;
       background: transparent;
       border: none;
-      font-family: ${(props) => props.theme.fonts.secondary};
+      font-family: inherit;
       font-size: 16px;
-      width: 120px !important;
-      padding: 10px;
+      color: ${(props) => props.theme.colors.backgrounds.dark};
+      background: white;
+      border-radius: 4px;
+      width: 100%;
+      width: 100px !important;
       padding-left: 10px;
     }
   }
@@ -48,6 +34,7 @@ const Wrapper = styled.div`
     justify-content: center;
     margin-right: 5px;
     cursor: pointer;
+    background: white;
 
     svg {
       &:hover {
@@ -59,39 +46,37 @@ const Wrapper = styled.div`
   .fieldArray__items--addItemButton {
     display: inline-block;
     cursor: pointer;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    padding: 10px;
-    border-radius: 5px;
   }
 
   .fieldArray__items {
     position: relative;
-    margin: 10px 0;
+    margin-bottom: 30px;
     width: 300px;
     width: 100%;
+    padding: 17px;
     font-size: 16px;
     font-family: inherit;
+    border: 1px solid ${(props) => props.theme.colors.utilities.input_border};
     border-radius: 5px;
     background: ${(props) => props.theme.colors.backgrounds.dark};
   }
 `;
 
-const GenresInput = (props) => {
+const RolesInput = (props) => {
   return (
     <Wrapper>
       <ArrayField
         maxWidth
         style={{ margin: "75px 0" }}
-        label="What type of music do you make?"
-        name="genres"
+        label="What do you play?"
+        name="roles"
         type="text"
-        invertItemClasses
-        items={props.genres}
-        itemKey="genres"
+        items={props.roles}
+        itemKey="roles"
         placeholder="e.g. Guitar, bass..."
         maxLength={25}
         change={(el) => console.log(el)}
-        removeItemButton={<BiMessageSquareMinus fill="white" />}
+        removeItemButton={<BiMessageSquareMinus fill="black" />}
         addItemButton={
           <p style={{ display: "flex" }}>
             <BiPlusCircle style={{ marginRight: "10px" }} /> Add item
@@ -102,4 +87,4 @@ const GenresInput = (props) => {
   );
 };
 
-export default GenresInput;
+export default RolesInput;

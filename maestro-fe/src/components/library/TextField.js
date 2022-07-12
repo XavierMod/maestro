@@ -8,7 +8,7 @@ const Wrapper = styled.div`
   margin-bottom: 30px;
   width: 300px;
 
-  input {
+  input, textarea {
     width: 100%;
     padding: 15px;
     font-size: 16px;
@@ -16,10 +16,16 @@ const Wrapper = styled.div`
     border: 1px solid ${(props) => props.theme.colors.utilities.input_border};
     border-radius: 5px;
     background: ${(props) => props.theme.colors.backgrounds.dark};
+    color: ${(props) => props.theme.colors.utilities.text};
     &:focus {
       outline: none !important;
     }
   }
+
+  textarea {
+    resize: none;
+  }
+  
   .ErrorMessage {
     color: ${(props) => props.theme.colors.utilities.text};
     font-size: 14px;
@@ -70,6 +76,7 @@ const TextField = (props) => {
     style,
     min,
     maxWidth,
+    component
   } = props;
   const [characterCount, setCharacterCount] = useState(0);
   return (
@@ -89,6 +96,7 @@ const TextField = (props) => {
           placeholder={placeholder}
           type={type}
           maxLength={maxLength}
+          component={component}
           name={name}
           min={min}
           max={maxLength}
