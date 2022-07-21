@@ -10,6 +10,10 @@ const Wrapper = styled.p`
   &.gorod {
     font-family: ${(props) => props.theme.fonts.tertiary};
   }
+
+  &.secondary {
+    font-family: ${(props) => props.theme.fonts.secondary};
+  }
 `;
 
 const Text = (props) => {

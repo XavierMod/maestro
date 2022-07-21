@@ -7,28 +7,21 @@ import RolesInput from "../library/RolesInput";
 import Text from "../library/styles/Text";
 import Title from "../library/styles/Title";
 import TextField from "../library/TextField";
+import ProfilePreview from "./ProfilePreview";
 
 const Wrapper = styled.div`
   display: flex;
-  position: fixed;
   width: 100%;
   height: 100%;
-  align-items: center;
-  padding: 40px;
+  align-items: flex-start;
+  padding: 40px 0;
 `;
 
 const InputsWrapper = styled.div`
   flex: 5;
   height: 100%;
   width: 100%;
-  overflow-y: scroll;
   padding-right: 50px;
-`;
-
-const ProfilePreview = styled.div`
-  flex: 5;
-  height: 100%;
-  border: 1px solid red;
 `;
 
 const SignUpProfile = () => {
@@ -37,6 +30,9 @@ const SignUpProfile = () => {
   return (
     <Wrapper>
       <InputsWrapper>
+        <Text style={{ marginBottom: "20px" }} className="gorod">
+          complete your profile
+        </Text>
         <Title className="large">Join Maestro. You’re gonna love it.</Title>
 
         <TextField
@@ -88,11 +84,7 @@ const SignUpProfile = () => {
           change={(el) => console.log(el)}
         />
       </InputsWrapper>
-      <ProfilePreview>
-        <Text>{values.email}</Text>
-
-        <Text className="gorod">#{values.username}, {values.age}</Text>
-      </ProfilePreview>
+      <ProfilePreview {...values} />
     </Wrapper>
   );
 };

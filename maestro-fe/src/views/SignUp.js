@@ -4,6 +4,7 @@ import { Route, Routes } from "react-router-dom";
 import * as Yup from "yup";
 import SignUpLanding from "../components/SignUp/SignUpLanding";
 import SignUpProfile from "../components/SignUp/SignUpProfile";
+import LandingLayout from "../layouts/LandingLayout";
 
 const SignupSchema = Yup.object().shape({
   email: Yup.string().email("Invalid email").required("Required"),
@@ -18,24 +19,26 @@ const SignupSchema = Yup.object().shape({
 
 const SignUp = () => {
   return (
-    <Formik
-      initialValues={{
-        email: "",
-        username: "",
-        age: "",
-        roles: ["guitar", "bass", "trumpet"],
-        genres: ["punk rock", "rock", "jazz"],
-        bio: "",
-        links: "",
-      }}
-      validationSchema={SignupSchema}
-      onSubmit={(values) => {}}
-    >
-      <Routes>
-        <Route index element={<SignUpLanding />} />
-        <Route path="profile" element={<SignUpProfile />} />
-      </Routes>
-    </Formik>
+    <LandingLayout>
+      <Formik
+        initialValues={{
+          email: "",
+          username: "",
+          age: "",
+          roles: ["guitar", "bass", "trumpet"],
+          genres: ["punk rock", "rock", "jazz"],
+          bio: "",
+          links: "",
+        }}
+        validationSchema={SignupSchema}
+        onSubmit={(values) => {}}
+      >
+        <Routes>
+          <Route index element={<SignUpLanding />} />
+          <Route path="profile" element={<SignUpProfile />} />
+        </Routes>
+      </Formik>
+    </LandingLayout>
   );
 };
 

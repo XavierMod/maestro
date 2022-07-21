@@ -13,14 +13,11 @@ import { useFormikContext } from "formik";
 
 const Wrapper = styled.div`
   display: flex;
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  align-items: center;
 `;
 
 const TextWrapper = styled.div`
   padding: 0 40px;
+  margin-top: 50px;
 `;
 
 const SignUpLanding = () => {
@@ -32,7 +29,7 @@ const SignUpLanding = () => {
       <div style={{ flex: 7 }}>
         <img
           alt=""
-          style={{ width: "100%", marginBottom: "40px" }}
+          style={{ width: "100%", marginBottom: "40px", marginTop: 30 }}
           src={LineWaves}
         />
         <TextWrapper>
@@ -57,7 +54,7 @@ const SignUpLanding = () => {
         </TextWrapper>
         <img
           alt=""
-          style={{ width: "100%", marginTop: "50px" }}
+          style={{ width: "100%", marginTop: "10px" }}
           src={MPattern}
         />
       </div>

@@ -1,3 +1,4 @@
+import PropTypes from "prop-types"
 import React from "react";
 import styled from "styled-components";
 
@@ -108,5 +109,19 @@ const Button = (props) => {
     </Wrapper>
   );
 };
+
+Button.propTypes = {
+  children: PropTypes.any,
+  className: PropTypes.any,
+  click: PropTypes.any,
+  color: PropTypes.any,
+  fullWidth: PropTypes.any,
+  getStyle: PropTypes.any,
+  grey: PropTypes.any,
+  isDisabled: PropTypes.any,
+  setWidth: PropTypes.any,
+  style: PropTypes.any,
+  type: PropTypes.any
+}
 
 export default Button;
