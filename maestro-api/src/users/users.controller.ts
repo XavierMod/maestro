@@ -4,13 +4,17 @@ import {
   Controller,
   Get,
   Logger,
+  Patch,
   Post,
   UseGuards,
 } from "@nestjs/common";
 import { AuthGuard } from "@nestjs/passport";
 import { InjectRepository } from "@nestjs/typeorm";
+import { AuthGuardJwt } from "src/auth/auth.guard.jwt";
 import { AuthService } from "src/auth/auth.service";
+import { CurrentUser } from "src/auth/current-user.decorator";
 import { CreateUserDto } from "src/auth/input/create-user.dto";
+import { UpdateUserDto } from "src/auth/input/update-user.dto";
 import { Repository } from "typeorm";
 import { User } from "./user.entity";
 
@@ -53,5 +57,24 @@ export class UsersController {
       ...(await this.repository.save(user)),
       token: this.authService.getTokenForUser(user),
     };
+  }
+
+  @Patch()
+  @UseGuards(AuthGuardJwt)
+  async update(
+    @Body() updateUserDto: UpdateUserDto,
+    @CurrentUser() user: User
+  ) {
+    user.bio = updateUserDto.bio;
+    user.age = updateUserDto.age;
+    user.genres = updateUserDto.genres;
+    user.links = updateUserDto.links;
+    user.roles = updateUserDto.roles;
+    user.image = updateUserDto.image;
+
+    return await this.repository.save({
+      ...user,
+      ...updateUserDto,
+    });
   }
 }

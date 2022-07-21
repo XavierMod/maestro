@@ -2,7 +2,14 @@ import { IsEmail } from "class-validator";
 import { Like } from "src/likes/like.entity";
 import { Song } from "src/songs/song.entity";
 import { Track } from "src/tracks/track.entity";
-import { Column, Entity, JoinColumn, JoinTable, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  JoinTable,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from "typeorm";
 
 @Entity("user")
 export class User {
@@ -12,6 +19,9 @@ export class User {
   @Column({ unique: true })
   username: string;
 
+  @Column()
+  password: string;
+
   @Column({ unique: true })
   @IsEmail()
   email: string;
@@ -19,11 +29,11 @@ export class User {
   @Column({ default: "" })
   bio: string;
 
-  @Column({ default: "" })
-  image: string;
+  @Column({ nullable: true })
+  age: number;
 
-  @Column()
-  password: string;
+  @Column({ default: "", nullable: true })
+  image: string;
 
   // * Defining relationships
   // When using a OneToMany decorator, ManyToOne is mandatory on the other end
@@ -39,6 +49,15 @@ export class User {
   })
   tracks: Track[];
 
-  @OneToMany(() => Like, (like) => like.user, {eager: true})
+  @OneToMany(() => Like, (like) => like.user, { eager: true })
   likes: Like[];
+
+  @Column({type: "simple-array", nullable: true})
+  roles: string;
+
+  @Column({type: "simple-array", nullable: true})
+  links: string;
+
+  @Column({type: "simple-array", nullable: true})
+  genres: string;
 }

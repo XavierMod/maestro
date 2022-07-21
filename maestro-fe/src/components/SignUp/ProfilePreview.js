@@ -34,13 +34,12 @@ const ProfilePreview = (props) => {
   return (
     <Wrapper>
       <ImageWrapper>
-        <Text
-          style={{ position: "absolute", bottom: 0, padding: "20px" }}
-          className="gorod"
-        >
-          #{props.username}, {props.age}
-        </Text>
-        <Text>{props.email}</Text>
+        <div style={{ position: "absolute", bottom: 0, padding: "20px" }}>
+          <Text className="gorod">
+            #{props.username}, {props.age}
+          </Text>
+          <Text style={{fontSize: 13, opacity: 0.5}}>Your email: {props.email}</Text>
+        </div>
       </ImageWrapper>
       <AboutWrapper>
         <Text style={{ fontSize: "20px" }} className="secondary">
@@ -53,13 +52,11 @@ const ProfilePreview = (props) => {
         </div>
       </AboutWrapper>
       <p>das</p>
-      <div style={{textAlign: 'right', marginTop: '200px'}}>
+      <div style={{ textAlign: "right", marginTop: "200px" }}>
         <Button style={{ marginRight: "20px" }} className="gorod">
           skip
         </Button>
-        <Button className="gorod accent_2">
-          finish
-        </Button>
+        <Button className="gorod accent_2">finish</Button>
       </div>
     </Wrapper>
   );
