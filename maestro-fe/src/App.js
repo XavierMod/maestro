@@ -3,11 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { Route, Routes } from "react-router-dom";
 import { getTokenFromStorage } from "./app/features/authenticationSlice";
 import Loading from "./components/library/Loading";
-import SignUpLanding from "./components/SignUp/SignUpLanding";
 import { status } from "./services/resources";
 import Error404 from "./views/Error404";
 import Home from "./views/Home";
 import Landing from "./views/Landing";
+import MySongs from "./views/MySongs";
+import MyTracks from "./views/MyTracks";
 import ServerDown from "./views/ServerDown";
 import SignIn from "./views/SignIn";
 import SignUp from "./views/SignUp";
@@ -41,7 +42,13 @@ function App() {
   }, [dispatch]);
 
   const renderAuthenticatedRoutes = () => {
-    return <Route path="/home" element={<Home />} />;
+    return (
+      <>
+        <Route path="/home" element={<Home />} />
+        <Route path="/tracks" element={<MyTracks />} />
+        <Route path="/songs" element={<MySongs />} />
+      </>
+    );
   };
 
   if (isServerUp) {
@@ -49,8 +56,15 @@ function App() {
       <Routes>
         {isUserAuthenticated ? renderAuthenticatedRoutes() : null}
         <Route index element={<Landing />} />
-        <Route path="signup/*" element={<SignUp />} />
-        <Route path="signin" element={<SignIn />} />
+        <Route
+          path="signup/*"
+          element={!isUserAuthenticated ? <SignUp /> : <Landing />}
+        />
+        <Route
+          path="signin"
+          element={!isUserAuthenticated ? <SignIn /> : <Landing />}
+        />
+        {!isUserAuthenticated ? <Route path="*" element={<SignIn />} /> : null}
         <Route path="*" element={<Error404 />} />
       </Routes>
     );

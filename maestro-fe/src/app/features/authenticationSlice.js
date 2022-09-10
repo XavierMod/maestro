@@ -24,7 +24,6 @@ export const signin = createAsyncThunk("signin", async (params) => {
     const response = (await _signin(email, password)).data;
     return response.token;
   } catch (err) {
-    console.log(err);
     return err;
   }
 });
@@ -62,15 +61,24 @@ export const authenticationSlice = createSlice({
       state.token = payload.token;
     },
     [signin.fulfilled]: (state, { payload }) => {
-      // If there is no token, then user is not authenticated
-      console.log("[signin.fulfilled]", payload);
+      // If login fails
+      if (payload.response?.status) {
+        state.error = payload.response.status;
+        throw Error("Login details are incorrect");
+      }
+
+      // Login succeeds
       state.token = payload;
+      state.error = null;
+      state.isUserAuthenticated = true;
+
+      console.log(state.token);
 
       setItem("@maestro-auth", payload);
     },
     [signin.rejected]: (state, { payload }) => {
       // If there is no token, then user is not authenticated
-      console.log("[signin.rejected]", payload);
+      alert("[signin.rejected]", payload);
     },
   },
 });

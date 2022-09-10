@@ -1,7 +1,7 @@
 import React from "react";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { signin } from "../../app/features/authenticationSlice";
 import TextField from "../library/TextField";
 import Button from "../library/Button";
@@ -18,6 +18,7 @@ const SignInSchema = Yup.object().shape({
 
 const SignInForm = () => {
   const dispatch = useDispatch();
+  const error = useSelector((state) => state.auth.error);
 
   return (
     <div>
@@ -29,16 +30,20 @@ const SignInForm = () => {
         validationSchema={SignInSchema}
         onSubmit={(values) => {
           // same shape as initial values
-          dispatch(
-            signin({
-              email: values.email,
-              password: values.password,
-            })
-          );
+          try {
+            dispatch(
+              signin({
+                email: values.email,
+                password: values.password,
+              })
+            );
+          } catch (err) {
+            alert("uo");
+          }
         }}
       >
         {({ errors, touched }) => (
-          <Form style={{position: 'relative'}}>
+          <Form style={{ position: "relative" }}>
             <TextField
               label="Email"
               name="email"
@@ -57,9 +62,14 @@ const SignInForm = () => {
             <Text style={{ marginBottom: "40px" }}>
               I've forgotten my password
             </Text>
+            <Text>{error}</Text>
 
-            <Button style={{position: 'absolute', right: 0, bottom: 0}} type="submit" className="icon">
-              <BiDownArrowAlt style={{rotate: '-90deg'}} />
+            <Button
+              style={{ position: "absolute", right: 0, bottom: 0 }}
+              type="submit"
+              className="icon"
+            >
+              <BiDownArrowAlt style={{ rotate: "-90deg" }} />
             </Button>
           </Form>
         )}
