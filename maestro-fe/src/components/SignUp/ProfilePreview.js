@@ -29,6 +29,9 @@ const Tag = styled.span`
   font-weight: bold;
   margin-right: 10px;
 `;
+const Bio = styled.div`
+  margin-top: 10px;
+`;
 
 const ProfilePreview = (props) => {
   return (
@@ -51,7 +54,7 @@ const ProfilePreview = (props) => {
           })}
         </div>
       </AboutWrapper>
-      <p>das</p>
+      <Text style={{marginTop: '10px'}}>{props.bio}</Text>
       <div style={{ textAlign: "right", marginTop: "200px" }}>
         <Button style={{ marginRight: "20px" }} className="gorod">
           skip

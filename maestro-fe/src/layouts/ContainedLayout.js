@@ -1,18 +1,18 @@
 import React from "react";
 import styled from "styled-components";
-import NavBar from "../components/library/NavBar";
+import NavBar from "../components/library/NavBar/NavBar";
 
 const Wrapper = styled.div`
   margin: auto;
-  max-width: 1200px;
+  max-width: 1100px;
   margin-top: 10px;
 `;
 
-const LandingLayout = ({ children }) => (
+const ContainedLayout = ({ children }) => (
   <Wrapper>
     <NavBar />
     {children}
   </Wrapper>
 );
 
-export default LandingLayout;
+export default ContainedLayout;
