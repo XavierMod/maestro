@@ -12,7 +12,7 @@ import { TracksService } from "./tracks.service";
   imports: [
     MulterModule.registerAsync({
       useFactory: () => ({
-        dest: "./uploads",
+        dest: "./uploads/tracks",
       }),
     }),
     TypeOrmModule.forFeature([Track, Song, SongPart, TrackRequest]),

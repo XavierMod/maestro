@@ -22,6 +22,9 @@ export class User {
   @Column()
   password: string;
 
+  @Column({default: false})
+  hasCompletedRegistration: boolean;
+
   @Column({ unique: true })
   @IsEmail()
   email: string;

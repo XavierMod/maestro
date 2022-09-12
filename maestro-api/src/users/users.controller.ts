@@ -6,9 +6,12 @@ import {
   Logger,
   Patch,
   Post,
+  UploadedFiles,
   UseGuards,
+  UseInterceptors,
 } from "@nestjs/common";
 import { AuthGuard } from "@nestjs/passport";
+import { FilesInterceptor } from "@nestjs/platform-express";
 import { InjectRepository } from "@nestjs/typeorm";
 import { AuthGuardJwt } from "src/auth/auth.guard.jwt";
 import { AuthService } from "src/auth/auth.service";
@@ -17,7 +20,9 @@ import { CreateUserDto } from "src/auth/input/create-user.dto";
 import { UpdateUserDto } from "src/auth/input/update-user.dto";
 import { Repository } from "typeorm";
 import { User } from "./user.entity";
-
+const fs = require("fs");
+const asyncFs = require("fs").promises;
+const path = require("path");
 @Controller("users")
 export class UsersController {
   private readonly logger = new Logger(UsersController.name);
@@ -70,11 +75,45 @@ export class UsersController {
     user.genres = updateUserDto.genres;
     user.links = updateUserDto.links;
     user.roles = updateUserDto.roles;
-    user.image = updateUserDto.image;
 
     return await this.repository.save({
       ...user,
       ...updateUserDto,
     });
+  }
+
+  @Patch("image")
+  @UseInterceptors(FilesInterceptor("image"))
+  @UseGuards(AuthGuardJwt)
+  async updateImage(
+    @UploadedFiles()
+    files: Array<Express.Multer.File>,
+    @CurrentUser() user: User
+  ) {
+    if (files[0]) {
+      const oldImage = path.join(
+        __dirname,
+        "..",
+        "..",
+        `uploads/images/${user.image}`
+      );
+
+      // Replaces old image
+      if (fs.existsSync(oldImage) && user.image !== null && user.image !== '') {
+        await asyncFs.unlink(oldImage, (err) => {
+          if (err) {
+            console.error(err);
+            return;
+          }
+        });
+      }
+
+      return await this.repository.save({
+        ...user,
+        image: `${files[0].filename}`,
+      });
+    }
+
+    throw new BadRequestException([`No image being sent`]);
   }
 }

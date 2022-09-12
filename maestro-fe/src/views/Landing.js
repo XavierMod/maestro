@@ -6,6 +6,7 @@ const Landing = () => {
   return (
     <LandingLayout>
       <div style={{color: 'white'}}>Landing content</div>
+      <img src="http://localhost:3000/388184673b1048fdd7abf2b04e868823" />
     </LandingLayout>
   );
 };
