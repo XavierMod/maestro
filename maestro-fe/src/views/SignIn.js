@@ -6,7 +6,8 @@ import SignInForm from "../components/SignIn/SignInForm";
 import SignInPattern from "../assets/svg/sign-in-pattern.svg";
 import LineWaves from "../assets/svg/line-waves.svg";
 import { Link } from "react-router-dom";
-import LandingLayout from "../layouts/LandingLayout";
+import AppLayout from "../layouts/AppLayout";
+import ContainedLayout from "../layouts/ContainedLayout";
 
 const Wrapper = styled.div`
   display: flex;
@@ -26,7 +27,7 @@ const SignIn = () => {
   const theme = useTheme();
 
   return (
-    <LandingLayout>
+    <ContainedLayout>
       <Wrapper>
         <ImageBackground>
           <img alt="" style={{ width: "100%" }} src={SignInPattern} />
@@ -53,7 +54,7 @@ const SignIn = () => {
           </div>
         </FormWrapper>
       </Wrapper>
-    </LandingLayout>
+    </ContainedLayout>
   );
 };
 

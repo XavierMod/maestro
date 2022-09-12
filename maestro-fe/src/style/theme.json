@@ -24,7 +24,8 @@
         "input_border": "#363636"
     },
     "backgrounds": {
-        "dark": "#101014"
+        "dark": "#101014",
+        "dark_2": "#1F1F28"
     }
   }
 }

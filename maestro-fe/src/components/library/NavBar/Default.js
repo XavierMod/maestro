@@ -1,8 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import Logo from "../../assets/svg/logo.svg";
-import Button from "./Button";
+import Logo from "../../../assets/svg/logo.svg";
+import Button from "../Button";
+
 const Wrapper = styled.div`
   display: flex;
 `;

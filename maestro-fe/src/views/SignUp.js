@@ -4,7 +4,7 @@ import { Route, Routes } from "react-router-dom";
 import * as Yup from "yup";
 import SignUpLanding from "../components/SignUp/SignUpLanding";
 import SignUpProfile from "../components/SignUp/SignUpProfile";
-import LandingLayout from "../layouts/LandingLayout";
+import ContainedLayout from "../layouts/ContainedLayout";
 
 const SignupSchema = Yup.object().shape({
   email: Yup.string().email("Invalid email").required("Required"),
@@ -19,7 +19,7 @@ const SignupSchema = Yup.object().shape({
 
 const SignUp = () => {
   return (
-    <LandingLayout>
+    <ContainedLayout>
       <Formik
         initialValues={{
           email: "",
@@ -38,7 +38,7 @@ const SignUp = () => {
           <Route path="profile" element={<SignUpProfile />} />
         </Routes>
       </Formik>
-    </LandingLayout>
+    </ContainedLayout>
   );
 };
 

@@ -1,9 +1,8 @@
-import React from 'react'
+import React from "react";
+import AppLayout from "../layouts/AppLayout";
 
 const Home = () => {
-  return (
-    <div>Home</div>
-  )
-}
+  return <AppLayout>Home</AppLayout>;
+};
 
-export default Home
+export default Home;
