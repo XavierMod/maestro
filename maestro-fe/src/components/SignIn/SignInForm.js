@@ -62,7 +62,7 @@ const SignInForm = () => {
             <Text style={{ marginBottom: "40px" }}>
               I've forgotten my password
             </Text>
-            <Text>{error}</Text>
+            <Text>{JSON.stringify(error)}</Text>
 
             <Button
               style={{ position: "absolute", right: 0, bottom: 0 }}

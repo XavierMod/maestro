@@ -5,7 +5,7 @@ import { getTokenFromStorage } from "./app/features/authenticationSlice";
 import Loading from "./components/library/Loading";
 import { status } from "./services/resources";
 import Error404 from "./views/Error404";
-import Home from "./views/Home";
+import Explore from "./views/Explore";
 import Landing from "./views/Landing";
 import MySongs from "./views/MySongs";
 import MyTracks from "./views/MyTracks";
@@ -44,9 +44,9 @@ function App() {
   const renderAuthenticatedRoutes = () => {
     return (
       <>
-        <Route path="/home" element={<Home />} />
-        <Route path="/tracks" element={<MyTracks />} />
-        <Route path="/songs" element={<MySongs />} />
+        <Route path="explore/*" element={<Explore />} />
+        <Route path="tracks" element={<MyTracks />} />
+        <Route path="songs" element={<MySongs />} />
       </>
     );
   };

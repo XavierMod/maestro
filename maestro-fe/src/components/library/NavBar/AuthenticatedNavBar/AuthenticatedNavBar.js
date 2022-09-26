@@ -45,7 +45,7 @@ const NavBar = () => {
       </NavLink>
       <NavItems>
         <div style={{ flex: 1 }}>
-          <NavItem text="Explore" link="/home" />
+          <NavItem text="Explore" link="/explore" />
         </div>
         <Right>
           <NavItem text="My tracks" link="/tracks" />
