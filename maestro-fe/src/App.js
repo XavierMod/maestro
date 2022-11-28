@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Route, Routes } from "react-router-dom";
 import { getTokenFromStorage } from "./app/features/authenticationSlice";
+import AudioPlayer from "./components/AudioPlayer/AudioPlayer";
 import Loading from "./components/library/Loading";
 import { status } from "./services/resources";
 import Error404 from "./views/Error404";
@@ -53,20 +54,25 @@ function App() {
 
   if (isServerUp) {
     return (
-      <Routes>
-        {isUserAuthenticated ? renderAuthenticatedRoutes() : null}
-        <Route index element={<Landing />} />
-        <Route
-          path="signup/*"
-          element={!isUserAuthenticated ? <SignUp /> : <Landing />}
-        />
-        <Route
-          path="signin"
-          element={!isUserAuthenticated ? <SignIn /> : <Landing />}
-        />
-        {!isUserAuthenticated ? <Route path="*" element={<SignIn />} /> : null}
-        <Route path="*" element={<Error404 />} />
-      </Routes>
+      <>
+        <Routes>
+          {isUserAuthenticated ? renderAuthenticatedRoutes() : null}
+          <Route index element={<Landing />} />
+          <Route
+            path="signup/*"
+            element={!isUserAuthenticated ? <SignUp /> : <Landing />}
+          />
+          <Route
+            path="signin"
+            element={!isUserAuthenticated ? <SignIn /> : <Landing />}
+          />
+          {!isUserAuthenticated ? (
+            <Route path="*" element={<SignIn />} />
+          ) : null}
+          <Route path="*" element={<Error404 />} />
+        </Routes>
+        <AudioPlayer />
+      </>
     );
   }
 

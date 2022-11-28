@@ -5,16 +5,19 @@ import Musicians from "../components/Explore/Musicians";
 import Saved from "../components/Explore/Saved";
 import Songs from "../components/Explore/Songs";
 import AppLayout from "../layouts/AppLayout";
+import MaxWidthLayout from "../layouts/MaxWidthLayout";
 
 const Explore = () => {
   return (
     <AppLayout>
-      <ExploreNavBar />
-      <Routes>
-        <Route index element={<Songs />} />
-        <Route path="musicians" element={<Musicians />} />
-        <Route path="saved" element={<Saved />} />
-      </Routes>
+      <MaxWidthLayout>
+        <ExploreNavBar />
+        <Routes>
+          <Route index element={<Songs />} />
+          <Route path="musicians" element={<Musicians />} />
+          <Route path="saved" element={<Saved />} />
+        </Routes>
+      </MaxWidthLayout>
     </AppLayout>
   );
 };

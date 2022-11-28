@@ -6,10 +6,14 @@ import NavItem from "./NavItem";
 import { BiDotsHorizontalRounded } from "react-icons/bi";
 import SettingsOverlay from "./SettingsOverlay";
 import { NavLink } from "react-router-dom";
+import MaxWidthLayout from "../../../../layouts/MaxWidthLayout";
 
 const Wrapper = styled.div`
-  display: flex;
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+`;
+
+const Container = styled.div`
+  display: flex;
 `;
 
 const LogoWrapper = styled.img`
@@ -40,28 +44,35 @@ const NavBar = () => {
   const [showSettingsOverlay, setShowSettingsOverlay] = useState(false);
   return (
     <Wrapper>
-      <NavLink to="/">
-        <LogoWrapper alt="" style={{ width: "70px" }} src={Logo} />
-      </NavLink>
-      <NavItems>
-        <div style={{ flex: 1 }}>
-          <NavItem text="Explore" link="/explore" />
-        </div>
-        <Right>
-          <NavItem text="My tracks" link="/tracks" />
-          <NavItem text="My songs" link="/songs" />
-        </Right>
-      </NavItems>
-      <div
-        onClick={() => setShowSettingsOverlay(!showSettingsOverlay)}
-        style={{ display: "flex", alignItems: "center", cursor: "pointer" }}
-      >
-        <ProfilePic />
-        <SettingsOverlayWrapper open={showSettingsOverlay}>
-          <BiDotsHorizontalRounded style={{ margin: "20px" }} fill="white" />
-          {showSettingsOverlay ? <SettingsOverlay /> : null}
-        </SettingsOverlayWrapper>
-      </div>
+      <MaxWidthLayout>
+        <Container>
+          <NavLink to="/">
+            <LogoWrapper alt="" style={{ width: "70px" }} src={Logo} />
+          </NavLink>
+          <NavItems>
+            <div style={{ flex: 1 }}>
+              <NavItem text="Explore" link="/explore" />
+            </div>
+            <Right>
+              <NavItem text="My tracks" link="/tracks" />
+              <NavItem text="My songs" link="/songs" />
+            </Right>
+          </NavItems>
+          <div
+            onClick={() => setShowSettingsOverlay(!showSettingsOverlay)}
+            style={{ display: "flex", alignItems: "center", cursor: "pointer" }}
+          >
+            <ProfilePic />
+            <SettingsOverlayWrapper open={showSettingsOverlay}>
+              <BiDotsHorizontalRounded
+                style={{ margin: "20px" }}
+                fill="white"
+              />
+              {showSettingsOverlay ? <SettingsOverlay /> : null}
+            </SettingsOverlayWrapper>
+          </div>
+        </Container>
+      </MaxWidthLayout>
     </Wrapper>
   );
 };
