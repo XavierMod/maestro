@@ -36,7 +36,7 @@ export const authenticationSlice = createSlice({
     // Returns true if user is authenticated
     isUserAuthenticated: null,
     // Returns true if user has a brand
-    error: null,
+    error: false,
   },
   reducers: {
     logOut: (state) => {
@@ -63,13 +63,13 @@ export const authenticationSlice = createSlice({
     [signin.fulfilled]: (state, { payload }) => {
       // If login fails
       if (payload.response?.status) {
-        state.error = payload.response.status;
-        throw Error("Login details are incorrect");
+        state.error = true;
+        return;
       }
 
       // Login succeeds
       state.token = payload;
-      state.error = null;
+      state.error = false;
       state.isUserAuthenticated = true;
 
       console.log(state.token);

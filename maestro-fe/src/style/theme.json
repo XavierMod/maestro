@@ -17,7 +17,8 @@
       "darker": "#503D42",
       "darker_active": "#33272a",
       "accent": "#3103EA",
-      "accent_2": "#23D384"
+      "accent_2": "#23D384",
+      "accent_3": "#100052"
     },
     "utilities": {
         "text": "#ffffff",
@@ -25,7 +26,7 @@
     },
     "backgrounds": {
         "dark": "#101014",
-        "dark_2": "#1F1F28"
+        "dark_2": "#323246"
     }
   }
 }

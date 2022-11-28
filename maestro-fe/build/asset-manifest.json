@@ -1,14 +1,26 @@
 {
   "files": {
-    "main.css": "/static/css/main.d18f9dad.css",
-    "main.js": "/static/js/main.2201766c.js",
-    "static/media/logo.svg": "/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "main.css": "/static/css/main.588adef4.css",
+    "main.js": "/static/js/main.c2a6d7ab.js",
+    "static/media/landing-asset-1.png": "/static/media/landing-asset-1.495046f2b069ce0dc176.png",
+    "static/media/Gilland-Bold.otf": "/static/media/Gilland-Bold.05716aab6a3df05374b7.otf",
+    "static/media/Gilland-Regular.otf": "/static/media/Gilland-Regular.a2872ca3305d63a7d613.otf",
+    "static/media/sign-in-pattern.svg": "/static/media/sign-in-pattern.421b85dca3de2200e50d0647db9a411b.svg",
+    "static/media/BentonSans-Bold.otf": "/static/media/BentonSans-Bold.318bb6580762c142cdc4.otf",
+    "static/media/BentonSans-Medium.otf": "/static/media/BentonSans-Medium.85d53b4b5a5e52c8357d.otf",
+    "static/media/BentonSans-Regular.otf": "/static/media/BentonSans-Regular.381e0de5615c965a7a4a.otf",
+    "static/media/BentonSans-Book.otf": "/static/media/BentonSans-Book.20d97fcb2e8dd0ca8a13.otf",
+    "static/media/Gorod.otf": "/static/media/Gorod.5d2a2aa352bc6332fd67.otf",
+    "static/media/m-pattern.svg": "/static/media/m-pattern.2547bdd44dc92b0dde2a157fcce2ba24.svg",
+    "static/media/line-waves.svg": "/static/media/line-waves.893e94d4ea694bedea45894f0aae2007.svg",
+    "static/media/simple-logo.svg": "/static/media/simple-logo.53b26785f16072f12ab89dfb7c7f0127.svg",
+    "static/media/logo.svg": "/static/media/logo.a228446ce2240f8715ebc5d041e9a293.svg",
     "index.html": "/index.html",
-    "main.d18f9dad.css.map": "/static/css/main.d18f9dad.css.map",
-    "main.2201766c.js.map": "/static/js/main.2201766c.js.map"
+    "main.588adef4.css.map": "/static/css/main.588adef4.css.map",
+    "main.c2a6d7ab.js.map": "/static/js/main.c2a6d7ab.js.map"
   },
   "entrypoints": [
-    "static/css/main.d18f9dad.css",
-    "static/js/main.2201766c.js"
+    "static/css/main.588adef4.css",
+    "static/js/main.c2a6d7ab.js"
   ]
 }

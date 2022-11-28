@@ -17,6 +17,7 @@ import { Song } from "src/songs/song.entity";
 import { SongPart } from "src/songs/songPart.entity";
 import { User } from "src/users/user.entity";
 import { Repository } from "typeorm";
+import { ModifyTrackRequest } from "./input/modify-track-request.dto";
 import { CreateTrackRequestDto } from "./input/create-track-request.dto";
 import { CreateTrackDto } from "./input/create-track.dto";
 import { Track } from "./track.entity";
@@ -79,7 +80,6 @@ export class TracksController {
       throw new BadRequestException([`Can't find track, song or song part`]);
     }
 
-
     if (!findSong.songParts.find((el) => el.id === input.songPartId)) {
       throw new BadRequestException([`Song part doesn't exist in song`]);
     }
@@ -107,5 +107,41 @@ export class TracksController {
     } catch (e) {
       throw new BadRequestException([`Request already exists`]);
     }
+  }
+
+  @Patch("request")
+  @UseGuards(AuthGuardJwt)
+  async modifyTrackRequest(@Body() input: ModifyTrackRequest) {
+    const findTrackRequest = await this.trackRequestsRepository.findOne({
+      where: { id: input.trackRequestId },
+    });
+
+    if (!findTrackRequest) {
+      throw new BadRequestException([`Track request doesn't exist`]);
+    }
+
+    if (input.isChosen) {
+      const findSong = await this.songsRepository.findOne({
+        where: { id: findTrackRequest.songId },
+      });
+
+      // If there is already a chosen track request for the selected part - throw
+      const trackRequestsWithSongPartId = findSong.trackRequests.filter((trackRequest) => trackRequest.songPart.id === findTrackRequest.songPart.id);
+      if (trackRequestsWithSongPartId.find((trackRequest) => trackRequest.isChosen)) {
+        throw new BadRequestException([`There is already a chosen track for this song part`]);
+      }
+
+      findTrackRequest.isChosen = input.isChosen;
+    }
+
+    if (input.hasBeenListened) {
+      findTrackRequest.hasBeenListened = input.hasBeenListened;
+    }
+
+    if (input.isDiscarded) {
+      findTrackRequest.hasBeenListened = input.isDiscarded;
+    }
+
+    return findTrackRequest;
   }
 }
